@@ -38,7 +38,7 @@ class SecretM:
     def _post(self, idx: int) -> None:
         payload = self.prepare_payload()
         res = requests.post(url=self.get_full_url(), data=payload)
-        print("For message number {}: Status code - {}".format(idx, res.status_code))
+        print("Response- {:03d}({}): {}".format(idx, res.status_code, payload['ans1'].strip()))
 
     def post(self, n: int = 1):
         with ThreadPoolExecutor() as executor:

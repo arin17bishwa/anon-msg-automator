@@ -1,5 +1,4 @@
 import argparse
-import setuptools
 from .modules import SecretM
 
 

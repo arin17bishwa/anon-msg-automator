@@ -5,11 +5,11 @@ from .modules import SecretM
 def get_args():
     args = argparse.ArgumentParser()
 
-    args.add_argument('-n', action='store_false',
-                      help='Don\'t generate a colorscheme or set terminal colors')
-
-    args.add_argument('-v', action='store_true',
-                      help='Print version')
+    args.add_argument(
+        '-v',
+        action='store_true',
+        help='Print version'
+    )
     args.add_argument(
         'platform',
         help='Give the platform name as mentioned in our documentation.',

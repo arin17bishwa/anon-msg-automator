@@ -1,7 +1,8 @@
-import requests
-import random
-import json
 import os
+import json
+import random
+import requests
+from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -15,7 +16,7 @@ class SecretM:
 
     def load_messages(self) -> None:
         if self.messages is None:
-            with open(os.path.join('AnonAutomator_arin17', 'resources', 'messages.json'), 'r') as fp:
+            with open(os.path.join(Path(__file__).resolve().parent, 'resources', 'messages.json'), 'r') as fp:
                 self.messages = json.load(fp)
         return
 

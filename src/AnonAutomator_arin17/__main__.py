@@ -1,5 +1,5 @@
 import argparse
-from .modules import SecretM
+from AnonAutomator_arin17.modules import SecretM
 
 
 def get_args():

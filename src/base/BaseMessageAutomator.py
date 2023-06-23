@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import random
+import re
 from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -37,6 +38,38 @@ class BaseMessageAutomator(ABC):
     @property
     def uid(self):
         return self._uid
+
+    @staticmethod
+    @abstractmethod
+    def parsable_patterns() -> List[str]:
+        ...
+
+    @staticmethod
+    def is_url(text: str) -> bool:
+        pattern = r"^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$"
+        return re.match(pattern, text) is not None
+
+    @classmethod
+    def get_uid_from_text(cls, txt: str) -> Optional[str]:
+        txt = txt.strip()
+        for pattern in cls.parsable_patterns():
+            matching = re.match(pattern, txt)
+            if matching is not None:
+                try:
+                    return matching.group('uid')
+                except IndexError:
+                    logger.error(f"text({txt}) matched with pattern({pattern}); but no 'uid' group name found."
+                                 f"Add a group named 'uid' to the pattern.")
+                    continue
+        return None
+
+    @classmethod
+    def get_obj_from_text(cls, text: str, *args, **kwargs) -> Optional["BaseMessageAutomator"]:
+        uid = cls.get_uid_from_text(text)
+        if uid is None:
+            return None
+        obj = cls(uid=uid, *args, **kwargs)
+        return obj
 
     def load_messages(self, all_message_types: bool = False) -> None:
         with open(os.path.join(BASE_DIR, 'resources', 'messages.json'), 'r') as fp:

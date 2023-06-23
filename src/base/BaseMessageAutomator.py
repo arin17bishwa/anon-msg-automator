@@ -72,7 +72,7 @@ class BaseMessageAutomator(ABC):
         return obj
 
     def load_messages(self, all_message_types: bool = False) -> None:
-        with open(os.path.join(BASE_DIR, 'resources', 'messages.json'), 'r') as fp:
+        with open(os.path.join(BASE_DIR, 'resources', 'sample_messages.json'), 'r') as fp:
             all_messages = json.load(fp)
         if all_message_types or (not self.message_types):
             self.messages = all_messages

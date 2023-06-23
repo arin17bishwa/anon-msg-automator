@@ -1,5 +1,6 @@
 import itertools
 import json
+import logging
 import os
 import random
 from abc import ABC, abstractmethod
@@ -9,6 +10,13 @@ from pathlib import Path
 from typing import List, Dict, Optional, Iterable
 
 import requests
+
+logger = logging.getLogger(__name__)
+formatter = logging.Formatter('%(levelname)s:%(asctime)s:%(name)s:%(message)s')
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(formatter)
+logger.addHandler(stream_handler)
+logger.setLevel(level=20)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

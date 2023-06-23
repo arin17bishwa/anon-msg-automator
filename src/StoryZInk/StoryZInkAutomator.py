@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import Dict
 
-from src.base.BaseMessageAutomator import BaseMessageAutomator
+from base.BaseMessageAutomator import BaseMessageAutomator
 
 
 class StoryZInkAutomator(BaseMessageAutomator, ABC):

@@ -22,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class BaseMessageAutomator(ABC):
-    def __init__(self, uid: str, message_types: Optional[Iterable[str]] = None, verbose_level: int = 1):
+    def __init__(self, uid: str, message_types: Optional[Iterable[str]] = None, verbose_level: int = 1, *args,
+                 **kwargs):
         if message_types is None:
             message_types = tuple()
         self._uid: str = uid

@@ -1,9 +1,11 @@
 from typing import Optional
 from base.BaseMessageAutomator import BaseMessageAutomator
 from StoryZInk import StoryZInkAutomator
+from NGL import NGL
 
 SPAMMERS = [
     StoryZInkAutomator.StoryZInkAutomator,
+    NGL.NGLAutomator,
 ]
 
 

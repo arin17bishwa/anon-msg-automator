@@ -5,7 +5,7 @@ from typing import List, Dict
 from base.BaseMessageAutomator import BaseMessageAutomator
 
 
-class NGL(BaseMessageAutomator, ABC):
+class NGLAutomator(BaseMessageAutomator, ABC):
     @staticmethod
     def parsable_patterns() -> List[str]:
         patterns = [
@@ -31,3 +31,19 @@ class NGL(BaseMessageAutomator, ABC):
         }
 
         return payload
+
+
+def main():
+    txt = 'mr_prokaryot1'
+    txt = '_.b.soumik._'
+    # txt = 'https://confess.ngl.link/mr_prokaryot1'
+    message_types = ['smooth']
+    verbose_level = 2
+    spammer = NGLAutomator.get_obj_from_text(txt, message_types=message_types, verbose_level=verbose_level)
+    n = 3
+    spammer.spam(n)
+    print(spammer.uid, spammer.message_types, spammer.verbose_level)
+
+
+if __name__ == "__main__":
+    main()

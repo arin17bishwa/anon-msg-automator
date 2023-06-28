@@ -2,10 +2,12 @@ from typing import Optional
 from base.BaseMessageAutomator import BaseMessageAutomator
 from StoryZInk import StoryZInkAutomator
 from NGL import NGL
+from SecretMessage import SecretMessage
 
 SPAMMERS = [
     StoryZInkAutomator.StoryZInkAutomator,
     NGL.NGLAutomator,
+    SecretMessage.SecretMessageAutomator,
 ]
 
 

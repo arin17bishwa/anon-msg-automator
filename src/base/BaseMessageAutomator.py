@@ -92,6 +92,8 @@ class BaseMessageAutomator(ABC):
             url=self._posting_url,
             data=payload,
         )
+        with open('del00.html', 'w') as fp:
+            fp.write(res.text)
         if self.verbose_level >= 2:
             print("{}: {} -> {}".format(idx, res.status_code, payload))
         return res.ok

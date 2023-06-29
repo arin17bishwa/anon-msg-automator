@@ -12,5 +12,6 @@ class SecretMAutomator(StoryZInkAutomator):
         ]
         return patterns
 
+    @property
     def _posting_url(self) -> str:
         return "https://secretm.me/message_h.php"
